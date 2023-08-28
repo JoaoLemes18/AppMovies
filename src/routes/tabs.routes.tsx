@@ -1,11 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BookmarkSimple, House, MagnifyingGlass } from "phosphor-react-native";
 import Home from "../screens/home/index";
-import { House } from "phosphor-react-native";
+import Search from "../screens/Search/index";
+import Details from "../screens/Details/index";
+import MyList from "../screens/MyList/index";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 export function TabRoutes() {
   return (
+    //Navigator Bar
     <Navigator
       screenOptions={{
         tabBarStyle: {
@@ -27,6 +31,31 @@ export function TabRoutes() {
         options={{
           tabBarIcon: ({ color }) => (
             <House color={color} size={30} weight="light" />
+          ),
+        }}
+      />
+      <Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MagnifyingGlass color={color} size={30} weight="light" />
+          ),
+        }}
+      />
+      <Screen
+        name="Details"
+        component={Details}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
+      <Screen
+        name="MyList"
+        component={MyList}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <BookmarkSimple color={color} size={30} weight="light" />
           ),
         }}
       />

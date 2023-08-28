@@ -1,5 +1,6 @@
 import { Text } from "react-native";
 
-export function Search() {
+export function Details() {
   return <Text>Details</Text>;
 }
+export default Details;
