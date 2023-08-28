@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { api } from "/Users/João/Desktop/meuApp/src/services/api";
-import { MagnifyingGlass } from "phosphor-react-native";
 import { useState, useEffect } from "react";
 import { CardMovies } from "../../components/cardMovie/index";
 
@@ -87,7 +86,6 @@ export default function Home() {
             value={search}
             onChangeText={handleSearch}
           />
-          <MagnifyingGlass color="#67686D" size={25} weight="light" />
         </View>
         {noResult && (
           <Text style={styles.noResult}>No movies found for "{search}"</Text>
