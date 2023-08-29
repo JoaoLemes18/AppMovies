@@ -95,7 +95,11 @@ export default function Home() {
         <FlatList
           data={movieData}
           numColumns={3}
-          renderItem={({ item }) => <CardMovies data={item} />}
+          renderItem={({ item }) => (
+            <CardMovies
+              data={item}
+            />
+          )}
           showsVerticalScrollIndicator={false}
           onEndReached={loadMoreData}
           onEndReachedThreshold={0.5}
