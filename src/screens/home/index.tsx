@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { styles } from "./styles";
-import { api } from "/Users/João/Desktop/meuApp/src/services/api";
+import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { CardMovies } from "../../components/cardMovie/index";
 
