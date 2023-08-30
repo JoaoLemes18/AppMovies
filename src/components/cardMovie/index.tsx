@@ -1,5 +1,6 @@
 import { Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 interface Movie {
   id: number;
@@ -8,17 +9,19 @@ interface Movie {
 
 interface Props {
   data: Movie;
-  onpress?: () => void;
+  onPress?: () => void;
 }
 
 export function CardMovies({ data, ...rest }: Props) {
-  const imageBaseUrl = "https://image.tmdb.org/t/p/w500"; // URL base para as imagens
+  const navigation = useNavigation();
+
+  const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
-    <TouchableOpacity {...rest} style={styles.cardMovies}>
+    <TouchableOpacity style={styles.cardMovies}>
       <Image
         source={{
-          uri: `${imageBaseUrl}${data.poster_path}`, // Construindo a URL completa
+          uri: `${imageBaseUrl}${data.poster_path}`,
         }}
         style={styles.cardImage}
       />

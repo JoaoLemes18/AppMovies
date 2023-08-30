@@ -1,16 +1,15 @@
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BookmarkSimple, House, MagnifyingGlass } from "phosphor-react-native";
 import Home from "../screens/home/index";
 import Search from "../screens/Search/index";
-import Details from "../screens/Details/index";
-import MyList from "../screens/MyList/index";
+import MyList from "../screens/WatchList/index";
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 export function TabRoutes() {
   return (
-    //Navigator Bar
-    <Navigator
+    <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
           backgroundColor: "#242a32",
@@ -25,7 +24,7 @@ export function TabRoutes() {
         tabBarShowLabel: false,
       }}
     >
-      <Screen
+      <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -34,7 +33,7 @@ export function TabRoutes() {
           ),
         }}
       />
-      <Screen
+      <Tab.Screen
         name="Search"
         component={Search}
         options={{
@@ -43,14 +42,7 @@ export function TabRoutes() {
           ),
         }}
       />
-      <Screen
-        name="Details"
-        component={Details}
-        options={{
-          tabBarButton: () => null,
-        }}
-      />
-      <Screen
+      <Tab.Screen
         name="MyList"
         component={MyList}
         options={{
@@ -59,6 +51,6 @@ export function TabRoutes() {
           ),
         }}
       />
-    </Navigator>
+    </Tab.Navigator>
   );
 }
