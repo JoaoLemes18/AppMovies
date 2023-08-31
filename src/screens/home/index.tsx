@@ -88,7 +88,7 @@ export default function Home() {
           />
         </View>
         {noResult && (
-          <Text style={styles.noResult}>No movies found for "{search}"</Text>
+          <Text style={styles.noResult}> No movies found for "{search}"</Text>
         )}
       </View>
       <View>
