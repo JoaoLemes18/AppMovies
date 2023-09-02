@@ -74,13 +74,15 @@ export function Home() {
     }
   };
 
-  //criar função de renderMovieItem
   const navigation = useNavigation();
 
   const renderMovieItem = ({ item }: { item: Movie }) => (
     <CardMovies
       data={item}
-      onPress={() => navigation.navigate("Details", { movieId: item.id })}
+      onPress={() => {
+        console.log("Pressionado item com movieId:", item.id);
+        navigation.navigate("Details", { movieId: item.id });
+      }}
     />
   );
 
@@ -93,13 +95,18 @@ export function Home() {
 
         <View style={styles.containerInput}>
           <TextInput
-            placeholderTextColor="#FFF"
+            placeholderTextColor="gray"
             placeholder="Search"
             style={styles.input}
             value={search}
             onChangeText={handleSearch}
           />
-          <MagnifyingGlass color="#FFf" size={25} weight="light" />
+          <MagnifyingGlass
+            style={styles.iconSearch}
+            color="gray"
+            size={25}
+            weight="light"
+          />
         </View>
 
         {noResult && (
@@ -114,7 +121,7 @@ export function Home() {
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={{
-            padding: 35,
+            padding: 5,
             paddingBottom: 100,
           }}
           onEndReached={() => loadMoreData()}

@@ -42,7 +42,10 @@ export const styles = StyleSheet.create({
   },
   input: {
     color: "#FFF",
-    width: "80%",
+    width: "100%",
     paddingLeft: 15,
+  },
+  iconSearch: {
+    right: 28,
   },
 });
