@@ -1,46 +1,48 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    width: width,
     backgroundColor: "#242A32",
-  },
-  header: {
-    marginTop: 59,
-  },
-  text1: {
-    color: "white",
-    marginLeft: 75,
-    fontSize: 22,
-    fontWeight: "bold",
+    alignItems: "center",
   },
   noResult: {
-    color: "white",
+    color: "#fff",
     fontSize: 18,
     textAlign: "center",
-    marginVertical: 18,
+    marginVertical: 10,
   },
-
-  inputContainer: {
+  flatList: {
+    width: width,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  header: {
+    padding: 25,
+  },
+  headerText: {
+    marginTop: 30,
+    lineHeight: 45,
+    textAlign: "center",
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#FFF",
+  },
+  containerInput: {
+    backgroundColor: "#67686D",
+    height: 42,
+    padding: 10,
+    borderRadius: 16,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: "#3A3F47",
-    left: 28,
-    width: 327,
-    height: 42,
-    marginTop: 30,
-    marginBottom: 22,
-    borderRadius: 18,
   },
   input: {
-    flex: 1,
-    paddingHorizontal: 16,
-    color: "white",
-  },
-  inputImage: {
-    width: 15,
-    height: 15,
-    marginHorizontal: 12,
-    tintColor: "gray",
+    color: "#FFF",
+    width: "80%",
+    paddingLeft: 15,
   },
 });

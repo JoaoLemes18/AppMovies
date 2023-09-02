@@ -1,16 +1,16 @@
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BookmarkSimple, House, MagnifyingGlass } from "phosphor-react-native";
-import Home from "../screens/home/index";
-import Details from "../screens/Details/index";
-import Search from "../screens/Search/index";
-import MyList from "../screens/WatchList/index";
+import { Details } from "../screens/Details";
 
-const Tab = createBottomTabNavigator();
+import { Home } from "../screens/home/index";
+import MyList from "../screens/WatchList/index";
+import { Search } from "../screens/Search";
+
+const { Navigator, Screen } = createBottomTabNavigator();
 
 export function TabRoutes() {
   return (
-    <Tab.Navigator
+    <Navigator
       screenOptions={{
         tabBarStyle: {
           backgroundColor: "#242a32",
@@ -22,10 +22,10 @@ export function TabRoutes() {
         headerShown: false,
         tabBarActiveTintColor: "#0296e5",
         tabBarInactiveTintColor: "#67686d",
-        tabBarShowLabel: true,
+        tabBarShowLabel: false,
       }}
     >
-      <Tab.Screen
+      <Screen
         name="Home"
         component={Home}
         options={{
@@ -34,14 +34,26 @@ export function TabRoutes() {
           ),
         }}
       />
-      <Tab.Screen
+
+      <Screen
         name="Details"
         component={Details}
         options={{
           tabBarButton: () => null,
         }}
       />
-      <Tab.Screen
+
+      <Screen
+        name="MyList"
+        component={MyList}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <BookmarkSimple color={color} size={30} weight="light" />
+          ),
+        }}
+      />
+
+      <Screen
         name="Search"
         component={Search}
         options={{
@@ -50,15 +62,6 @@ export function TabRoutes() {
           ),
         }}
       />
-      <Tab.Screen
-        name="My List"
-        component={MyList}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <BookmarkSimple color={color} size={30} weight="light" />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    </Navigator>
   );
 }

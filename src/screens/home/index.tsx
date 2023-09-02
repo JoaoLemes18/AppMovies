@@ -1,24 +1,28 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
+import { MagnifyingGlass } from "phosphor-react-native";
+import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   FlatList,
   Text,
-  View,
   TextInput,
-  ActivityIndicator,
+  View,
 } from "react-native";
-import { styles } from "./styles";
-import { api } from "../../services/api";
-import { useState, useEffect } from "react";
+
 import { CardMovies } from "../../components/cardMovie/index";
+
+import { api } from "../../services/api";
+
+import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 interface Movie {
   id: number;
   title: string;
   poster_path: string;
+  overview: string;
 }
 
-export default function Home() {
+export function Home() {
   const [discoveryMovies, setDiscoveryMovies] = useState<Movie[]>([]);
   const [searchResultMovies, setSearchResultMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
@@ -70,37 +74,53 @@ export default function Home() {
     }
   };
 
+  //criar função de renderMovieItem
+  const navigation = useNavigation();
+
+  const renderMovieItem = ({ item }: { item: Movie }) => (
+    <CardMovies
+      data={item}
+      onPress={() => navigation.navigate("Details", { movieId: item.id })}
+    />
+  );
+
   const movieData = search.length > 2 ? searchResultMovies : discoveryMovies;
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-
       <View style={styles.header}>
-        <Text style={styles.text1}>What do you want to watch?</Text>
-        <View style={styles.inputContainer}>
+        <Text style={styles.headerText}>What do you want to watch?</Text>
+
+        <View style={styles.containerInput}>
           <TextInput
-            style={styles.input}
+            placeholderTextColor="#FFF"
             placeholder="Search"
-            placeholderTextColor="gray"
+            style={styles.input}
             value={search}
             onChangeText={handleSearch}
           />
+          <MagnifyingGlass color="#FFf" size={25} weight="light" />
         </View>
+
         {noResult && (
-          <Text style={styles.noResult}> No movies found for "{search}"</Text>
+          <Text style={styles.noResult}>No movies found for "{search}"</Text>
         )}
       </View>
-      <View>
+      <View style={styles.flatList}>
         <FlatList
           data={movieData}
           numColumns={3}
-          renderItem={({ item }) => <CardMovies data={item} />}
+          renderItem={renderMovieItem}
           showsVerticalScrollIndicator={false}
-          onEndReached={loadMoreData}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={{
+            padding: 35,
+            paddingBottom: 100,
+          }}
+          onEndReached={() => loadMoreData()}
           onEndReachedThreshold={0.5}
         />
-        {loading && <ActivityIndicator size={50} color="#8296e5" />}
+        {loading && <ActivityIndicator size={50} color="#0296e5" />}
       </View>
     </View>
   );
